@@ -1,0 +1,19 @@
+syntax = "proto3";
+package carauction.car;
+
+import "gogoproto/gogo.proto";
+import "carauction/car/params.proto";
+import "carauction/car/bids.proto";
+import "carauction/car/highest_per_hundred.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "CarAuction/x/car/types";
+
+// GenesisState defines the car module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Bids bidsList = 2 [(gogoproto.nullable) = false];
+  repeated HighestPerHundred highestPerHundredList = 3 [(gogoproto.nullable) = false];
+  uint64 highestPerHundredCount = 4;
+  // this line is used by starport scaffolding # genesis/proto/state
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package carauction.car;
+
+option go_package = "CarAuction/x/car/types";
+
+message HighestPerHundred {
+  uint64 id = 1;
+  int32 value = 2; 
+  int32 period = 3; 
+  string creator = 4;
+}

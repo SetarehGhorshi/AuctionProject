@@ -1,0 +1,12 @@
+syntax = "proto3";
+package carauction.car;
+
+option go_package = "CarAuction/x/car/types";
+
+message Bids {
+  string index = 1; 
+  int32 bid = 2; 
+  string bidder = 3; 
+  string creator = 4;
+}
+

@@ -1,0 +1,87 @@
+syntax = "proto3";
+package carauction.car;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "carauction/car/params.proto";
+import "carauction/car/bids.proto";
+import "carauction/car/highest_per_hundred.proto";
+// this line is used by starport scaffolding # 1
+
+option go_package = "CarAuction/x/car/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/CarAuction/car/params";
+  }
+  // Queries a Bids by index.
+	rpc Bids(QueryGetBidsRequest) returns (QueryGetBidsResponse) {
+		option (google.api.http).get = "/CarAuction/car/bids/{index}";
+	}
+
+	// Queries a list of Bids items.
+	rpc BidsAll(QueryAllBidsRequest) returns (QueryAllBidsResponse) {
+		option (google.api.http).get = "/CarAuction/car/bids";
+	}
+
+// Queries a HighestPerHundred by id.
+	rpc HighestPerHundred(QueryGetHighestPerHundredRequest) returns (QueryGetHighestPerHundredResponse) {
+		option (google.api.http).get = "/CarAuction/car/highest_per_hundred/{id}";
+	}
+
+	// Queries a list of HighestPerHundred items.
+	rpc HighestPerHundredAll(QueryAllHighestPerHundredRequest) returns (QueryAllHighestPerHundredResponse) {
+		option (google.api.http).get = "/CarAuction/car/highest_per_hundred";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetBidsRequest {
+	  string index = 1;
+
+}
+
+message QueryGetBidsResponse {
+	Bids bids = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllBidsRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllBidsResponse {
+	repeated Bids bids = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetHighestPerHundredRequest {
+	uint64 id = 1;
+}
+
+message QueryGetHighestPerHundredResponse {
+	HighestPerHundred HighestPerHundred = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHighestPerHundredRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHighestPerHundredResponse {
+	repeated HighestPerHundred HighestPerHundred = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3

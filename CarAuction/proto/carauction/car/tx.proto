@@ -1,0 +1,80 @@
+syntax = "proto3";
+package carauction.car;
+
+import "carauction/car/bids.proto";
+import "carauction/car/highest_per_hundred.proto";
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "CarAuction/x/car/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc PlaceBid(MsgPlaceBid) returns (MsgPlaceBidResponse);
+  rpc CreateBids(MsgCreateBids) returns (MsgCreateBidsResponse);
+  rpc UpdateBids(MsgUpdateBids) returns (MsgUpdateBidsResponse);
+  rpc DeleteBids(MsgDeleteBids) returns (MsgDeleteBidsResponse);
+rpc CreateHighestPerHundred(MsgCreateHighestPerHundred) returns (MsgCreateHighestPerHundredResponse);
+  rpc UpdateHighestPerHundred(MsgUpdateHighestPerHundred) returns (MsgUpdateHighestPerHundredResponse);
+  rpc DeleteHighestPerHundred(MsgDeleteHighestPerHundred) returns (MsgDeleteHighestPerHundredResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgPlaceBid {
+  string creator = 1;
+  int32 bidValue = 2;
+}
+
+message MsgPlaceBidResponse {
+}
+
+message MsgCreateBids {
+  string creator = 1;
+  string index = 2;
+
+  int32 bid = 3;
+  string bidder = 4;
+}
+message MsgCreateBidsResponse {}
+
+message MsgUpdateBids {
+  string creator = 1;
+  string index = 2;
+
+  int32 bid = 3;
+  string bidder = 4;
+}
+message MsgUpdateBidsResponse {}
+
+message MsgDeleteBids {
+  string creator = 1;
+  string index = 2;
+}
+message MsgDeleteBidsResponse {}
+
+message MsgCreateHighestPerHundred {
+  string creator = 1;
+  int32 value = 2;
+  int32 period = 3;
+}
+
+message MsgCreateHighestPerHundredResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateHighestPerHundred {
+  string creator = 1;
+  uint64 id = 2;
+  int32 value = 3;
+  int32 period = 4;
+}
+
+message MsgUpdateHighestPerHundredResponse {}
+
+message MsgDeleteHighestPerHundred {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteHighestPerHundredResponse {}
+
+// this line is used by starport scaffolding # proto/tx/message
