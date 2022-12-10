@@ -48,9 +48,7 @@ func main() {
 	for i := 0; i < 1000; i++ {
 
 		bid := int32(r1.Intn(100) + 1)
-		if bid > max {
-			max = bid
-		}
+		
 		msg := &types.MsgPlaceBid{
 			Creator:  addr,
 			BidValue: bid,
@@ -65,6 +63,9 @@ func main() {
 		}
 		if int(txResp.Height) > 100*(j+1) {
 			break
+		}
+		if bid > max {
+			max = bid
 		}
 	}
 
